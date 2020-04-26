@@ -20,7 +20,7 @@ class User{
         $result = mysqli_query($conection , $query);
         if(mysqli_num_rows($result) > 0){
             $user = mysqli_fetch_assoc($result);
-            $var = new User($user['id'], $user['name'], $result['email'], $result['password']);
+            $var = new User($user['id'], $user['name'], $user['email'], $user['password']);
             return $var;
         }
         else{

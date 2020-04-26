@@ -18,7 +18,12 @@ class UserController{
     }
 
     public static function verifyLogin(){
-        
+        if($_SESSION['user']!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public static function logout(){

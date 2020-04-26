@@ -7,6 +7,11 @@
 
 
 <html>
+
+
+
+
+
     <form action="/Treinamento 2019.2/company/store" method="post">
         <input name="name" placeholder="name">
         <input name="federation" placeholder="federation">          

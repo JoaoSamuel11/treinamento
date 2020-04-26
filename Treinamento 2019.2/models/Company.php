@@ -15,15 +15,49 @@ class Company{
 
     public static function all(){
         $conection = Connection::getConnection();
-        $name = array();
         $query = " Select * from companys";
         $result = mysqli_query($conection , $query);
+        if(mysqli_num_rows($result) >= 1){
+            for($i=0 ; $i<mysqli_num_rows($result); $i++){
+                $company = mysqli_fetch_assoc($result);
+                $companys[$i] = new Company($company['id'],$company['name'],$company['federation']);
+            }
+            return $companys;
+        }
+        else{
+            return false;
+        }
         
     }
 
-    public function delete(){
-
+    public static function delete($id){
+        $conection = Connection::getConnection();
+        $query = "DELETE FROM companys WHERE id = '{$id[0]}'";
+        $result = mysqli_query($conection , $query);
+        mysqli_close($conection);
     }
+
+    public static function update($name,$federation,$id){
+        $conection = Connection::getConnection();
+        $query="update cliente set nome '{$name}' and federation '{$federation}' where id = '{$id}'";
+        mysqli_close($conection);
+    }
+
+    public static function find($id){
+        $conection = Connection::getConnection();
+        $query = "select * from users where id = '{$id}'";
+        $result = mysqli_query($conection , $query);
+        if(mysqli_num_rows($result) > 0){
+            $company = mysqli_fetch_assoc($result);
+            $var = new Company($id,$company["name"],$company['federation']);
+            return $var;
+        }
+        else{
+            return false;
+        }
+        mysqli_close($conection);
+    }
+    
 
     public function __construct($id, $name, $federation){
         $this->id = $id;

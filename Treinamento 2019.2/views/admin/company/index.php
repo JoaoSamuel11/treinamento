@@ -20,7 +20,7 @@ editar
 </button>
 </a>
 
-<a href="/Treinamento 2019.2/company/delete">
+<a href="/Treinamento 2019.2/company/delete/<?php echo $company->getId()?>">
 <button>
 excluir
 </button>
